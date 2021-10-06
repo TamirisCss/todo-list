@@ -5,16 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./images/list-ul-solid.svg">
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/a0e4aef26a.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>To do List</title>
 </head>
 <body>
-    <section>
+    <section class="container">
         <div class="display-time">
-            <h2 class="week-day"></h2>
+            <h2 class="current-week-day"></h2>
             <h2 class="current-date"></h2>
             <h2 class="current-time"></h2>
         </div>
+
+        <section>
+            <form>
+                <input type="text" class="todo-input" placeholder="add a task">
+                <button class="todo-button" type="submit">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </form>
+        </section>
+        <section class="todo-container">
+            <ul class="todo-list">jsdhjfdf</ul>
+        </section>
     </section>
     <script src="./todo.js"></script>
 </body>
