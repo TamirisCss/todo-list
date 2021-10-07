@@ -23,7 +23,6 @@ body {
     width: 60vw;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     text-align: center;
 }
 .list-container h1 {
@@ -71,4 +70,16 @@ body {
 }
 .todo-button .fas {
     color: #fff;
+}
+
+.todo-container {
+    padding: 0rem 1rem;
+    margin-top: 1rem;
+}
+
+/* class created on js */
+.todo-item {
+    color: #fff;
+    text-align: start;
+    list-style-type: none;
 }

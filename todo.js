@@ -35,5 +35,6 @@ function addTodo(event) {
     //todo li
     const newTodoLi = document.createElement("li");
     newTodoLi.innerText = todoInput.value;
+    newTodoLi.classList.add("todo-item");
     todoList.appendChild(newTodoLi);
 }
