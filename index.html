@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,26 +11,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>To do List</title>
 </head>
-<body>
-    <section class="container">
-        <div class="display-time">
-            <h2 class="current-week-day"></h2>
-            <h2 class="current-date"></h2>
-            <h2 class="current-time"></h2>
-        </div>
 
+<body>
+    <div class="list-container">
+        <h1>To Do List:</h1>
         <section>
-            <form>
-                <input type="text" class="todo-input" placeholder="add a task">
-                <button class="todo-button" type="submit">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </form>
+            <div class="display-time">
+                <h2 class="current-week-day"></h2>
+                <h2 class="current-date"></h2>
+                <h2 class="current-time"></h2>
+            </div>
+    
+            <div>
+                <form>
+                    <input type="text" class="todo-input" placeholder="add a task">
+                    <button class="todo-button" type="submit">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </form>
+            </div>
+    
+            <div class="todo-container">
+                <ul class="todo-list"></ul>
+            </div>
         </section>
-        <section class="todo-container">
-            <ul class="todo-list">jsdhjfdf</ul>
-        </section>
-    </section>
+    </div>
+
     <script src="./todo.js"></script>
 </body>
+
 </html>
