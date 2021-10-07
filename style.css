@@ -17,7 +17,8 @@ body {
 }
 
 .list-container {
-    background-image: linear-gradient(to right, #2193b0 , #6dd5ed);
+    /* background-image: linear-gradient(to right, #2193b0 , #6dd5ed); */
+    background: #3C424A;
     height: 90vh;
     width: 60vw;
     display: flex;
