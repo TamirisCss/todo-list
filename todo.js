@@ -20,5 +20,20 @@ currentWeekDay.innerHTML = weekDay;
 currentDate.innerHTML = date;
 currentTime.innerHTML = time;
 
+//
+const todoInput = document.querySelector(".todo-input");
+const todoBtn = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
-console.log(todoList);
+
+//EVENT LISTENERS
+todoBtn.addEventListener("click", addTodo);
+
+//ADDING NEW TO DO
+function addTodo(event) {
+    event.preventDefault(); //browser don't reload. Faz o item li aparecer
+
+    //todo li
+    const newTodoLi = document.createElement("li");
+    newTodoLi.innerText = todoInput.value;
+    todoList.appendChild(newTodoLi);
+}
