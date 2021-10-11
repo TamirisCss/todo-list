@@ -32,9 +32,27 @@ todoBtn.addEventListener("click", addTodo);
 function addTodo(event) {
     event.preventDefault(); //browser don't reload. Faz o item li aparecer
 
+    //todo div
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo-div");
+    //checkbox 
+    const checkbox = document.createElement("input");
+    checkbox.classList.add("checkbox");
+    checkbox.type = "checkbox";
     //todo li
     const newTodoLi = document.createElement("li");
-    newTodoLi.innerText = todoInput.value;
     newTodoLi.classList.add("todo-item");
-    todoList.appendChild(newTodoLi);
+    //dots icon
+    const trashIcon = document.createElement("a");
+    trashIcon.innerHTML = '<i class="fas fa-trash"></i>';
+    trashIcon.classList.add("trash-icon");
+
+    todoList.appendChild(todoDiv);
+    todoDiv.appendChild(checkbox);
+    todoDiv.appendChild(newTodoLi);
+    todoDiv.appendChild(trashIcon);
+    
+    newTodoLi.innerText = todoInput.value; //display new todo 
+
+    todoInput.value = "";
 }

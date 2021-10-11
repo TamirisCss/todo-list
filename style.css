@@ -78,8 +78,10 @@ body {
 }
 
 /* class created on js */
+.todo-div {
+    display: flex;
+}
 .todo-item {
     color: #fff;
-    text-align: start;
     list-style-type: none;
 }
