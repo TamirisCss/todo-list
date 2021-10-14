@@ -80,8 +80,20 @@ body {
 /* class created on js */
 .todo-div {
     display: flex;
+    padding: 0rem 2rem;
+    align-items: center;
 }
 .todo-item {
     color: #fff;
     list-style-type: none;
+    margin: .40rem 0rem;
+}
+
+.checkbox {
+    margin-right: 1rem;
+    outline: none;
+}
+
+.trash-icon {
+    margin-left: auto;
 }
