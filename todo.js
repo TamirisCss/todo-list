@@ -33,39 +33,53 @@ todoBtn.addEventListener("click", addTodo);
 //criar um metodo que pega tudo que esta no array e mostra na tela (cria o html)
 //chamar esse metodo que atualiza a tela ao abrir a pagina e dentro do metodo addTodo
 //adicionar event no botao remover que acha e remove o item do array (e atualizar a tela)
-let todoList = window.localStorage.getItem("todos");
+let storage = window.localStorage.getItem("todos");
+console.log(storage)
 let todos;
-if(todoList === null) {
+if(storage === null) {
     todos = [];
 }else {
-    todos = JSON.parse(todoList);
+    todos = JSON.parse(storage);
 }
+updateDisplay();
+console.log(todos)
 
 //ADDING NEW TO DO
 function addTodo(event) {
     event.preventDefault(); //browser don't reload. Faz o item li aparecer
 
-    //todo div
-    const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo-div");
-    //checkbox 
-    const checkbox = document.createElement("input");
-    checkbox.classList.add("checkbox");
-    checkbox.type = "checkbox";
-    //todo li
-    const newTodoLi = document.createElement("li");
-    newTodoLi.classList.add("todo-item");
-    //trash icon
-    const trashIcon = document.createElement("a");
-    trashIcon.innerHTML = '<i class="fas fa-trash"></i>';
-    trashIcon.classList.add("trash-icon");
-
-    todoListUl.appendChild(todoDiv);
-    todoDiv.appendChild(checkbox);
-    todoDiv.appendChild(newTodoLi);
-    todoDiv.appendChild(trashIcon);
-    
-    newTodoLi.innerText = todoInput.value; //display new todo 
-
+    todos.push(todoInput.value);
     todoInput.value = "";
+    console.log(todos)
+
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+    updateDisplay();
 }
+
+function updateDisplay() {
+    todoListUl.innerHTML = "";
+    todos.forEach(element => {
+        // todo div
+        const todoDiv = document.createElement("div");
+        todoDiv.classList.add("todo-div");
+        //checkbox 
+        const checkbox = document.createElement("input");
+        checkbox.classList.add("checkbox");
+        checkbox.type = "checkbox";
+        //todo li
+        const newTodoLi = document.createElement("li");
+        newTodoLi.classList.add("todo-item");
+        //trash icon
+        const trashIcon = document.createElement("a");
+        trashIcon.innerHTML = '<i class="fas fa-trash"></i>';
+        trashIcon.classList.add("trash-icon");
+
+        todoListUl.appendChild(todoDiv);
+        todoDiv.appendChild(checkbox);
+        todoDiv.appendChild(newTodoLi);
+        todoDiv.appendChild(trashIcon);
+
+        newTodoLi.innerHTML = element;
+    });
+}
+
