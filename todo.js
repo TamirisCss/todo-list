@@ -28,10 +28,6 @@ const todoListUl = document.querySelector(".todo-list-ul");
 //EVENT LISTENERS
 todoBtn.addEventListener("click", addTodo);
 
-//criar um array pra guardar cada todo e se esta completo ou nao (boolean)
-//no addTodo so adicionar no array
-//criar um metodo que pega tudo que esta no array e mostra na tela (cria o html)
-//chamar esse metodo que atualiza a tela ao abrir a pagina e dentro do metodo addTodo
 //adicionar event no botao remover que acha e remove o item do array (e atualizar a tela)
 let storage = window.localStorage.getItem("todos");
 console.log(storage)
@@ -42,20 +38,19 @@ if(storage === null) {
     todos = JSON.parse(storage);
 }
 updateDisplay();
-console.log(todos)
 
 //ADDING NEW TO DO
 function addTodo(event) {
     event.preventDefault(); //browser don't reload. Faz o item li aparecer
 
-    todos.push(todoInput.value);
+    todos.push({todo: todoInput.value, completed: false});
     todoInput.value = "";
-    console.log(todos)
 
     window.localStorage.setItem('todos', JSON.stringify(todos));
     updateDisplay();
 }
 
+//Displayy new Li in the browser
 function updateDisplay() {
     todoListUl.innerHTML = "";
     todos.forEach(element => {
@@ -71,15 +66,41 @@ function updateDisplay() {
         newTodoLi.classList.add("todo-item");
         //trash icon
         const trashIcon = document.createElement("a");
-        trashIcon.innerHTML = '<i class="fas fa-trash"></i>';
+        trashIcon.innerHTML = `<i class="fas fa-trash" data="${element}"></i>`;
         trashIcon.classList.add("trash-icon");
 
+        trashIcon.addEventListener("click", removeLocalStorage);
+        
         todoListUl.appendChild(todoDiv);
         todoDiv.appendChild(checkbox);
         todoDiv.appendChild(newTodoLi);
         todoDiv.appendChild(trashIcon);
-
-        newTodoLi.innerHTML = element;
+        
+        newTodoLi.innerHTML = element.todo;
     });
 }
 
+//Remove item from LocalStorage
+function removeLocalStorage(event) {
+    //obtains the div of the clicked trash icon
+    const div = event.target.parentElement.parentElement;
+    //obtains the index of the div inside of the UL
+    const index = Array.prototype.indexOf.call(todoListUl.children, div);
+    //removes 1 item on the given index on the todos array
+    todos.splice(index, 1);
+    //updates the localstorage with the current value of the todos array
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+    //updates the dom based on the current value of the todos array
+    updateDisplay();
+}
+
+//Marcar como feito
+//criar uma funcao que recebe o evento de clique no checkbox
+//a funcao deve achar o indice do checkbox que foi clicado
+//dado o indice achar o elemento no array todos e atuatlizar o valor
+//deve funcionar como "Toogle" se completed === true, muda pra false e vice-versa
+//const item = todos[index]
+//alterar o addTodo para suportar guardar o valor do checkbox
+//atualizar o storage
+//atualizar o DOM
+//atualiar o updateDisplay pra suportar mostrar o valor do checkbox e aplicar o estilo
