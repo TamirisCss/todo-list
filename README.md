@@ -46,7 +46,6 @@ Users should be able to:
 
 ```js
 let storage = window.localStorage.getItem("todos");
-// console.log(storage)
 let todos;
 if(storage === null) {
     todos = [];

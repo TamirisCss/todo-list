@@ -43,7 +43,11 @@ updateDisplay();
 function addTodo(event) {
     event.preventDefault(); //browser don't reload. Faz o item li aparecer
 
-    todos.push({todo: todoInput.value, completed: false});
+    let object = {
+        todo: todoInput.value, 
+        completed: false
+    }
+    todos.push(object);
     todoInput.value = "";
 
     window.localStorage.setItem('todos', JSON.stringify(todos));
@@ -61,10 +65,12 @@ function updateDisplay() {
         const checkbox = document.createElement("input");
         checkbox.classList.add("checkbox");
         checkbox.type = "checkbox";
-
-        checkbox.addEventListener("click", () => {
+        if(element.completed) { // true or false
+            checkbox.checked = true
             todoDiv.classList.add("completed");
-        });
+        }
+        //EVENT LISTENERS
+        checkbox.addEventListener("click", completed);
 
         //todo li
         const newTodoLi = document.createElement("li");
@@ -74,6 +80,7 @@ function updateDisplay() {
         trashIcon.innerHTML = `<i class="fas fa-trash" data="${element}"></i>`;
         trashIcon.classList.add("trash-icon");
 
+        //EVENT LISTENERS
         trashIcon.addEventListener("click", removeLocalStorage);
         
         todoListUl.appendChild(todoDiv);
@@ -99,29 +106,17 @@ function removeLocalStorage(event) {
     updateDisplay();
 }
 
-//Marcar como feito
-//criar uma funcao que recebe o evento de clique no checkbox
-
-// function completed(event) {
-//     const div = event.target.parentElement.parentElement;
-//     const index = Array.prototype.indexOf.call(todoListUl.children, div);
-//     const item = todos[index];
-//     item.completed = !item.completed;
-//     console.log(index)
-//     console.log(item)
-//     if(item.completed === true) {
-//         item.completed = false;
-//     }else {
-//         item.completed = true;
-//     }
-//     updateDisplay();
-// }
-
-//a funcao deve achar o indice do checkbox que foi clicado
-//dado o indice achar o elemento no array todos e atuatlizar o valor
-//deve funcionar como "Toogle" se completed === true, muda pra false e vice-versa
-//const item = todos[index]
-//alterar o addTodo para suportar guardar o valor do checkbox
-//atualizar o storage
-//atualizar o DOM
-//atualiar o updateDisplay pra suportar mostrar o valor do checkbox e aplicar o estilo
+// Check if todo is completed
+function completed(event) {
+    const div = event.target.parentElement;
+    const index = Array.prototype.indexOf.call(todoListUl.children, div);
+    const item = todos[index];
+    if(item.completed) {
+        item.completed = false;
+    }else {
+        item.completed = true;
+    }
+    todos[index] = item;
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+    updateDisplay();
+}
