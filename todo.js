@@ -30,7 +30,7 @@ todoBtn.addEventListener("click", addTodo);
 
 //adicionar event no botao remover que acha e remove o item do array (e atualizar a tela)
 let storage = window.localStorage.getItem("todos");
-console.log(storage)
+// console.log(storage)
 let todos;
 if(storage === null) {
     todos = [];
@@ -61,6 +61,11 @@ function updateDisplay() {
         const checkbox = document.createElement("input");
         checkbox.classList.add("checkbox");
         checkbox.type = "checkbox";
+
+        checkbox.addEventListener("click", () => {
+            todoDiv.classList.add("completed");
+        });
+
         //todo li
         const newTodoLi = document.createElement("li");
         newTodoLi.classList.add("todo-item");
@@ -86,6 +91,7 @@ function removeLocalStorage(event) {
     const div = event.target.parentElement.parentElement;
     //obtains the index of the div inside of the UL
     const index = Array.prototype.indexOf.call(todoListUl.children, div);
+    console.log(index)
     //removes 1 item on the given index on the todos array
     todos.splice(index, 1);
     //updates the localstorage with the current value of the todos array
@@ -96,6 +102,22 @@ function removeLocalStorage(event) {
 
 //Marcar como feito
 //criar uma funcao que recebe o evento de clique no checkbox
+
+// function completed(event) {
+//     const div = event.target.parentElement.parentElement;
+//     const index = Array.prototype.indexOf.call(todoListUl.children, div);
+//     const item = todos[index];
+//     item.completed = !item.completed;
+//     console.log(index)
+//     console.log(item)
+//     if(item.completed === true) {
+//         item.completed = false;
+//     }else {
+//         item.completed = true;
+//     }
+//     updateDisplay();
+// }
+
 //a funcao deve achar o indice do checkbox que foi clicado
 //dado o indice achar o elemento no array todos e atuatlizar o valor
 //deve funcionar como "Toogle" se completed === true, muda pra false e vice-versa
