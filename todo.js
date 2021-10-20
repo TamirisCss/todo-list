@@ -91,7 +91,6 @@ function removeLocalStorage(event) {
     const div = event.target.parentElement.parentElement;
     //obtains the index of the div inside of the UL
     const index = Array.prototype.indexOf.call(todoListUl.children, div);
-    console.log(index)
     //removes 1 item on the given index on the todos array
     todos.splice(index, 1);
     //updates the localstorage with the current value of the todos array

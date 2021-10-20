@@ -96,11 +96,18 @@ body {
 
 .checkbox {
     margin-right: 1rem;
-    outline: none;
+    width: 1.3rem;
+    height: 2rem;
+    cursor: pointer;
 }
 
 .trash-icon {
     margin-left: auto;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.trash-icon:hover {
+    color: rgba(228, 62, 40, 0.85);
 }
 .completed {
     opacity: 0.5;
